@@ -1,14 +1,16 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-export default function Task({ text }) {
+export default function Task({ item, handleDeleteTask }) {
   return (
     <View style={styles.item}>
       <View style={styles.itemLeft}>
         <View style={styles.square}></View>
-        <Text style={styles.text}>{text}</Text>
+        <Text style={styles.text}>{item.text}</Text>
       </View>
-      <View style={styles.circular}></View>
+      <TouchableOpacity onPress={() => handleDeleteTask(item.key)}>
+        <View style={styles.circular}></View>
+      </TouchableOpacity>
     </View>
   );
 }

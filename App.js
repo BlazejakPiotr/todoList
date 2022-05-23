@@ -6,13 +6,17 @@ import {
   TouchableOpacity,
   TextInput,
   Keyboard,
+  FlatList,
 } from "react-native";
 import { useState } from "react";
 import Task from "./compontents/Task";
 
 export default function App() {
   const [task, setTask] = useState();
-  const [taskList, setTaskList] = useState([]);
+  const [taskList, setTaskList] = useState([
+    { text: "blabla", key: "1" },
+    { text: "jaja diff", key: "2" },
+  ]);
 
   const handleAddTask = () => {
     Keyboard.dismiss();
@@ -20,14 +24,26 @@ export default function App() {
     setTask(null);
   };
 
+  const handleDeleteTask = (key) => {
+    setTaskList((prevTaskList) => {
+      return prevTaskList.filter((todo) => todo.key != key);
+    });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.taskWrapper}>
         <Text style={styles.title}>My tasks</Text>
         <View style={styles.list}>
-          {taskList.map((task, index) => {
+          <FlatList
+            data={taskList}
+            renderItem={({ item }) => (
+              <Task item={item} handleDeleteTask={handleDeleteTask} />
+            )}
+          />
+          {/* {taskList.map((task, index) => {
             return <Task key={index} text={task} />;
-          })}
+          })} */}
         </View>
       </View>
       <KeyboardAvoidingView
