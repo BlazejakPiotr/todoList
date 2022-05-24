@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
   },
   taskWrapper: {
     paddingTop: 20,
+    paddingBottom: 120,
   },
   title: {
     fontSize: 24,

@@ -4,7 +4,7 @@ import {
   Text,
   View,
   KeyboardAvoidingView,
-  TouchableOpacity,
+  Button,
   TextInput,
 } from "react-native";
 
@@ -24,11 +24,11 @@ function AddTask({ handleAddTask }) {
         value={text}
         onChangeText={changeHandler}
       />
-      <TouchableOpacity onPress={() => handleAddTask(text)}>
-        <View style={styles.addWrapper}>
-          <Text style={styles.addText}>Add Todo</Text>
-        </View>
-      </TouchableOpacity>
+      <Button
+        onPress={() => handleAddTask(text)}
+        title="add todo"
+        color="red"
+      />
     </KeyboardAvoidingView>
   );
 }
@@ -36,29 +36,19 @@ function AddTask({ handleAddTask }) {
 const styles = StyleSheet.create({
   addTaskWrapper: {
     position: "absolute",
+    margin: 20,
+    bottom: 5,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    bottom: 60,
-    width: "100%",
   },
   input: {
-    padding: 15,
+    padding: 5,
     backgroundColor: "#FFF",
     borderRadius: 5,
     borderColor: "#C0C0C0",
     borderWidth: 1,
-    width: 250,
-  },
-  addWrapper: {
-    height: 60,
-    width: 80,
-    backgroundColor: "#FFF",
-    borderRadius: 5,
-    borderColor: "#C0C0C0",
-    borderWidth: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    width: "80%",
   },
 });
 
