@@ -18,9 +18,9 @@ export default function App() {
     { text: "jaja diff", key: "2" },
   ]);
 
-  const handleAddTask = () => {
+  const handleAddTask = (text) => {
     Keyboard.dismiss();
-    setTaskList([...taskList, task]);
+    setTaskList([...taskList, { text, key: Math.random().toString() }]);
     setTask(null);
   };
 
@@ -56,9 +56,9 @@ export default function App() {
           value={task}
           onChangeText={(text) => setTask(text)}
         />
-        <TouchableOpacity onPress={() => handleAddTask()}>
+        <TouchableOpacity onPress={() => handleAddTask(task)}>
           <View style={styles.addWrapper}>
-            <Text style={styles.addText}>+</Text>
+            <Text style={styles.addText}>Add Todo</Text>
           </View>
         </TouchableOpacity>
       </KeyboardAvoidingView>
@@ -87,23 +87,23 @@ const styles = StyleSheet.create({
     position: "absolute",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     bottom: 60,
     width: "100%",
   },
   input: {
     padding: 15,
     backgroundColor: "#FFF",
-    borderRadius: 50,
+    borderRadius: 5,
     borderColor: "#C0C0C0",
     borderWidth: 1,
     width: 250,
   },
   addWrapper: {
-    width: 60,
     height: 60,
+    width: 80,
     backgroundColor: "#FFF",
-    borderRadius: 50,
+    borderRadius: 5,
     borderColor: "#C0C0C0",
     borderWidth: 1,
     justifyContent: "center",
